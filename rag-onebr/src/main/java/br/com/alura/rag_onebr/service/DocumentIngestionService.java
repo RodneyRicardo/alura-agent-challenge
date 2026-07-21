@@ -18,7 +18,6 @@ public class DocumentIngestionService {
 
     private static final Logger log = LoggerFactory.getLogger(DocumentIngestionService.class);
 
-    // Injetamos o Ingestor que configuramos na classe RagConfig
     private final EmbeddingStoreIngestor ingestor;
 
     public DocumentIngestionService(EmbeddingStoreIngestor ingestor) {
@@ -29,11 +28,11 @@ public class DocumentIngestionService {
     public void init() {
         log.info("Iniciando a leitura e vetorização dos PDFs...");
 
-        // 1. Lê todos os PDFs da pasta
+        // Lê todos os PDFs da pasta
         Path directoryPath = Paths.get("src/main/resources/docs/");
         List<Document> documents = FileSystemDocumentLoader.loadDocuments(directoryPath, new ApachePdfBoxDocumentParser());
 
-        // 2. Faz o Chunking e salva no banco vetorial em memória
+        // Faz o Chunking e salva no banco vetorial em memória
         ingestor.ingest(documents);
 
         log.info("Documentos ingeridos com sucesso! O Agente está pronto para responder perguntas.");
