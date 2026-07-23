@@ -46,31 +46,32 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- 1. Cliente OpenAI (que usaremos como ponte para a API do Gemini) -->
-		<dependency>
-			<groupId>dev.langchain4j</groupId>
-			<artifactId>langchain4j-open-ai</artifactId>
-			<version>0.33.0</version>
-		</dependency>
-
-		<!-- 2. Modelo de Embeddings Local (Gratuito e super rápido) -->
-		<dependency>
-			<groupId>dev.langchain4j</groupId>
-			<artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
-			<version>0.33.0</version>
-		</dependency>
-
-		<!-- Leitor de PDF do LangChain4j -->
-		<dependency>
-			<groupId>dev.langchain4j</groupId>
-			<artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
-			<version>0.33.0</version>
-		</dependency>
-
+		<!-- Biblioteca Principal do LangChain4j -->
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j</artifactId>
-			<version>0.33.0</version>
+			<version>0.35.0</version>
+		</dependency>
+
+		<!-- Cliente Oficial da OpenAI -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-open-ai</artifactId>
+			<version>0.35.0</version>
+		</dependency>
+
+		<!-- Leitor de PDF (Apache PDFBox) -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
+			<version>0.35.0</version>
+		</dependency>
+
+		<!-- Modelo Local de Embeddings (All-MiniLM) -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+			<version>0.35.0</version>
 		</dependency>
 
 	</dependencies>

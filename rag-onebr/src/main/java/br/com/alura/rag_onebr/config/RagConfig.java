@@ -21,15 +21,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RagConfig {
 
-    @Value("${gemini.api-key}")
-    private String geminiApiKey;
+    // Agora vamos ler a chave da OpenAI no application.properties
+    @Value("${openai.api-key}")
+    private String openAiApiKey;
 
     @Bean
     public ChatLanguageModel chatLanguageModel() {
         return OpenAiChatModel.builder()
-                .apiKey(geminiApiKey)
-                .baseUrl("https://generativelanguage.googleapis.com/v1beta/openai/")
-                .modelName("gemini-1.5-flash")
+                .apiKey(openAiApiKey)
+                .baseUrl("https://api.groq.com/openai/v1") // <--- Aponta para a Groq mantendo o driver da OpenAI
+                .modelName("llama-3.3-70b-versatile")       // <--- Modelo gratuito de altíssima performance
                 .temperature(0.0)
                 .logRequests(true)
                 .logResponses(true)
@@ -57,27 +58,17 @@ public class RagConfig {
                 .build();
     }
 
-    // --- AS NOVIDADES COMEÇAM AQUI ---
-
-    /**
-     * O "Buscador": É ele quem vai no banco de dados vetorial, pesquisa os pedaços
-     * de PDF que mais combinam com a pergunta e devolve para a IA.
-     */
     @Bean
     public ContentRetriever contentRetriever(EmbeddingStore<TextSegment> embeddingStore,
                                              EmbeddingModel embeddingModel) {
         return EmbeddingStoreContentRetriever.builder()
                 .embeddingStore(embeddingStore)
                 .embeddingModel(embeddingModel)
-                .maxResults(3) // Traz os 3 pedaços de texto mais relevantes do PDF
-                .minScore(0.6) // Grau mínimo de confiança (0.0 a 1.0)
+                .maxResults(3)
+                .minScore(0.6)
                 .build();
     }
 
-    /**
-     * O Agente Final: Junta o Cérebro (ChatModel) com os PDFs (ContentRetriever)
-     * e implementa automaticamente a nossa interface AssistenteFinanceiro.
-     */
     @Bean
     public AssistenteFinanceiro assistenteFinanceiro(ChatLanguageModel chatModel,
                                                      ContentRetriever contentRetriever) {
