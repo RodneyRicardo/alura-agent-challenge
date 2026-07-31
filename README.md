@@ -62,3 +62,23 @@ curl -X POST http://localhost:8080/chat \
 Resposta gerada pelo agente RAG:
 
 "De acordo com as informações fornecidas, o seu limite diário para transferências via PIX de madrugada (período noturno, das 20h00 às 05h59) é de R$ 1.000,00."
+
+## 🚀 Evidências do Deploy na Oracle Cloud Infrastructure (OCI)
+
+Abaixo estão as evidências que comprovam o funcionamento completo da aplicação em um ambiente de nuvem real, contemplando a inicialização no servidor e o acesso HTTP externo.
+
+### 1. Inicialização do Servidor (Terminal Oracle)
+![Terminal rodando Spring Boot](./images/terminal-spring.png)
+*Figura 1: Logs no terminal do Ubuntu na OCI confirmando a inicialização bem-sucedida do Tomcat e da aplicação na porta 8080.*
+
+<img width="1909" height="586" alt="terminal-spring" src="https://github.com/user-attachments/assets/15fd5f53-bb7f-406b-968a-b3bc0df05c91" />
+
+
+### 2. Acesso Web (Navegador)
+> **Link público de acesso:** [http://147.15.50.200:8080](http://147.15.50.200:8080)
+
+![Página da Aplicação no Navegador](./images/deploy-browser.png)
+*Figura 2: Captura de tela do navegador exibindo a resposta da API rodando publicamente através do IP da Oracle Cloud.*
+
+<img width="1917" height="1078" alt="deploy-brower" src="https://github.com/user-attachments/assets/0330f821-ca71-4e00-8215-c204b80bc291" />
+
